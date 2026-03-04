@@ -1,12 +1,22 @@
 import React from "react";
-import { SqlQuestion } from "@/data/sqlQuestions";
-import { RotateCcw, Trophy, Target, TrendingUp } from "lucide-react";
+import { RotateCcw, Trophy, Target } from "lucide-react";
+
+interface QuizQuestion {
+  id: number;
+  title: string;
+  query_a: string;
+  query_b: string;
+  answer: "same" | "different";
+  explanation: string;
+  difficulty: "easy" | "medium" | "hard";
+  topic: string;
+}
 
 interface QuizResultProps {
   score: number;
   total: number;
   answers: Record<number, "same" | "different">;
-  questions: SqlQuestion[];
+  questions: QuizQuestion[];
   onRestart: () => void;
 }
 
@@ -19,7 +29,6 @@ const QuizResult: React.FC<QuizResultProps> = ({ score, total, questions, answer
     pct >= 50 ? { label: "Intermediate", color: "text-accent" } :
     { label: "Keep Practicing", color: "text-destructive" };
 
-  // Topic breakdown
   const topicStats: Record<string, { correct: number; total: number }> = {};
   questions.forEach((q, idx) => {
     if (!topicStats[q.topic]) topicStats[q.topic] = { correct: 0, total: 0 };
@@ -36,7 +45,6 @@ const QuizResult: React.FC<QuizResultProps> = ({ score, total, questions, answer
           <p className={`text-xl font-semibold ${grade.color}`}>{grade.label}</p>
         </div>
 
-        {/* Score circle */}
         <div className="flex justify-center mb-8">
           <div className="relative w-32 h-32 flex items-center justify-center rounded-full border-4 border-primary glow-primary">
             <div className="text-center">
@@ -47,7 +55,6 @@ const QuizResult: React.FC<QuizResultProps> = ({ score, total, questions, answer
           </div>
         </div>
 
-        {/* Topic breakdown */}
         <div className="rounded-lg border bg-card p-5 mb-6">
           <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
             <Target className="h-4 w-4 text-muted-foreground" />
@@ -64,9 +71,7 @@ const QuizResult: React.FC<QuizResultProps> = ({ score, total, questions, answer
                       style={{ width: `${(stats.correct / stats.total) * 100}%` }}
                     />
                   </div>
-                  <span className="font-mono text-xs w-8 text-right">
-                    {stats.correct}/{stats.total}
-                  </span>
+                  <span className="font-mono text-xs w-8 text-right">{stats.correct}/{stats.total}</span>
                 </div>
               </div>
             ))}
