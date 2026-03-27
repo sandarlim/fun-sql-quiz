@@ -4,18 +4,18 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
+  // ADD THE LINE BELOW (use your GitHub repo name)
+  base: "fun-sql-quiz", 
+  
   server: {
-    host: "::",
+    host: "0.0.0.0",
     port: 8080,
-    hmr: {
-      overlay: false,
-    },
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-}));
+});
