@@ -5,8 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // ADD THE LINE BELOW (use your GitHub repo name)
-  base: "/fun-sql-quiz/", 
+  base: '/fun-sql-quiz/',
   
   server: {
     host: "0.0.0.0",
