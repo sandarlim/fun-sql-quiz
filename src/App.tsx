@@ -13,7 +13,10 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      {/* import.meta.env.BASE_URL pulls the 'base' from your vite.config.ts.
+          Locally it will be "/" and on GitHub it will be "/fun-sql-quiz/".
+      */}
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
