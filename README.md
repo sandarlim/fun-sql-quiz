@@ -4,6 +4,11 @@ A fun quiz to practice SQL basics. Built as an experiment using [Lovable](https:
 
 🔗 **Live site**: https://sandarlim.github.io/fun-sql-quiz
 
+## About
+
+20 questions covering common SQL gotchas — JOINs, NULLs, aggregations, window functions, and more. Explanations are written with modern SQL engines in mind (SparkSQL, Presto, BigQuery, PostgreSQL) and note where behaviour differs across databases.
+
+
 ## Tech Stack
 
 - [Vite](https://vitejs.dev/) — build tool
